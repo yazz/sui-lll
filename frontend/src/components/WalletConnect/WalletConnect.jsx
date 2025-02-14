@@ -44,7 +44,8 @@ const WalletConnect = () => {
   const handleOnDisconnect = useCallback(() => {
     disconnect();
     setOpen(false);
-  }, [disconnect]);
+    navigate("/");
+  }, [disconnect, navigate]);
 
   const Wallets = useMemo(() => {
     return (
