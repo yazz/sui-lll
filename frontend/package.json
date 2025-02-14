@@ -13,6 +13,7 @@
     "@mysten/dapp-kit": "^0.14.50",
     "@mysten/sui": "^1.21.2",
     "@tanstack/react-query": "^5.66.0",
+    "radix-ui": "^1.1.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "styled-components": "^6.1.15"

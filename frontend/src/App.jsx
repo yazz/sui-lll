@@ -6,6 +6,10 @@ import {
   WalletProvider,
 } from "@mysten/dapp-kit";
 import { getFullnodeUrl } from "@mysten/sui/client";
+import GlobalStyles from "./styles/GlobalStyles";
+
+import ProgressBar from "./components/ProgressBar";
+import { lightTheme } from "./styles/theme";
 
 const queryClient = new QueryClient();
 
@@ -19,10 +23,11 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <SuiClientProvider networks={networks} defaultNetwork="devnet">
         <WalletProvider>
-          <ThemeProvider theme={{}}>
+          <ThemeProvider theme={lightTheme}>
+            <GlobalStyles />
             <Main>
               <ConnectButton />
-              <div>routing</div>
+              <ProgressBar value={20} my={4} px={10} />
             </Main>
           </ThemeProvider>
         </WalletProvider>
@@ -33,6 +38,7 @@ function App() {
 
 const Main = styled.main`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
