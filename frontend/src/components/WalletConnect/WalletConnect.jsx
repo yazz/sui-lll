@@ -2,6 +2,7 @@ import {
   useConnectWallet,
   useCurrentAccount,
   useDisconnectWallet,
+  useAutoConnectWallet,
   useWallets,
 } from "@mysten/dapp-kit";
 import { Popover } from "radix-ui";

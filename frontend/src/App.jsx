@@ -23,7 +23,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <SuiClientProvider networks={networks} defaultNetwork="devnet">
-        <WalletProvider>
+        <WalletProvider autoConnect={true}>
           <ThemeProvider theme={lightTheme}>
             <GlobalStyles />
             <RootNavigation />
