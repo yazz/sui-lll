@@ -1,7 +1,6 @@
 import styled, { ThemeProvider } from "styled-components";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
-  ConnectButton,
   SuiClientProvider,
   useCurrentAccount,
   useSuiClientQuery,
@@ -11,6 +10,7 @@ import { getFullnodeUrl } from "@mysten/sui/client";
 import GlobalStyles from "./styles/GlobalStyles";
 
 import { lightTheme } from "./styles/theme";
+import { RootNavigation } from "./navigation/rootNavigation";
 
 const queryClient = new QueryClient();
 
@@ -24,26 +24,19 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <SuiClientProvider networks={networks} defaultNetwork="devnet">
         <WalletProvider>
-          {/* <ThemeProvider theme={lightTheme}> */}
-          {/* <GlobalStyles /> */}
-          <Main>
-            <ConnectButton />
-            <ConnectedAccount />
-          </Main>
-          {/* </ThemeProvider> */}
+          <ThemeProvider theme={lightTheme}>
+            <GlobalStyles />
+            <RootNavigation />
+            {/* <Main>
+              <ConnectButton />
+              <ConnectedAccount />
+            </Main> */}
+          </ThemeProvider>
         </WalletProvider>
       </SuiClientProvider>
     </QueryClientProvider>
   );
 }
-
-const Main = styled.main`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-`;
 
 export default App;
 
