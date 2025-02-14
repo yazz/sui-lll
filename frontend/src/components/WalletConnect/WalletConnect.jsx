@@ -2,19 +2,20 @@ import {
   useConnectWallet,
   useCurrentAccount,
   useDisconnectWallet,
-  useAutoConnectWallet,
   useWallets,
 } from "@mysten/dapp-kit";
 import { Popover } from "radix-ui";
 import { useCallback, useMemo, useState } from "react";
 import styled from "styled-components";
 import Avatar from "../Avatar";
+import { useNavigate } from "react-router";
 
 const WalletConnect = () => {
   const wallets = useWallets();
   const currentAccount = useCurrentAccount();
   const { mutate: disconnect } = useDisconnectWallet();
   const { mutate: connect } = useConnectWallet();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
   const handleOnConnect = useCallback(
@@ -30,6 +31,14 @@ const WalletConnect = () => {
       );
     },
     [connect]
+  );
+
+  const handleRouting = useCallback(
+    ({ route }) => {
+      navigate(route);
+      setOpen(false);
+    },
+    [navigate]
   );
 
   const handleOnDisconnect = useCallback(() => {
@@ -65,7 +74,16 @@ const WalletConnect = () => {
       <Popover.Portal>
         <PopoverContent sideOffset={5}>
           {currentAccount ? (
-            <Button onClick={handleOnDisconnect}>Disconnect</Button>
+            <ul>
+              <li>
+                <Button onClick={() => handleRouting({ route: "/account" })}>
+                  Account
+                </Button>
+              </li>
+              <li>
+                <Button onClick={handleOnDisconnect}>Disconnect</Button>
+              </li>
+            </ul>
           ) : (
             Wallets
           )}
