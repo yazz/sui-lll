@@ -22,6 +22,7 @@ function App() {
           <ThemeProvider theme={{}}>
             <Main>
               <ConnectButton />
+              <div>routing</div>
             </Main>
           </ThemeProvider>
         </WalletProvider>
