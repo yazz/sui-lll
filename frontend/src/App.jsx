@@ -1,11 +1,12 @@
-import styled, { ThemeProvider } from "styled-components";
+import { ThemeProvider } from "styled-components";
+import { BrowserRouter } from "react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import {
-  ConnectButton,
-  SuiClientProvider,
-  WalletProvider,
-} from "@mysten/dapp-kit";
+import { SuiClientProvider, WalletProvider } from "@mysten/dapp-kit";
 import { getFullnodeUrl } from "@mysten/sui/client";
+import GlobalStyles from "./styles/GlobalStyles";
+
+import { lightTheme } from "./styles/theme";
+import { RootNavigation } from "./navigation/rootNavigation";
 
 const queryClient = new QueryClient();
 
@@ -16,26 +17,19 @@ const networks = {
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <SuiClientProvider networks={networks} defaultNetwork="devnet">
-        <WalletProvider>
-          <ThemeProvider theme={{}}>
-            <Main>
-              <ConnectButton />
-              <div>routing</div>
-            </Main>
-          </ThemeProvider>
-        </WalletProvider>
-      </SuiClientProvider>
-    </QueryClientProvider>
+    <BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <SuiClientProvider networks={networks} defaultNetwork="devnet">
+          <WalletProvider autoConnect={true}>
+            <ThemeProvider theme={lightTheme}>
+              <GlobalStyles />
+              <RootNavigation />
+            </ThemeProvider>
+          </WalletProvider>
+        </SuiClientProvider>
+      </QueryClientProvider>
+    </BrowserRouter>
   );
 }
-
-const Main = styled.main`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-`;
 
 export default App;
