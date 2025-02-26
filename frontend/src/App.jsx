@@ -18,6 +18,7 @@ const networks = {
 function App() {
   return (
     <BrowserRouter>
+      <div>SUI</div>
       <QueryClientProvider client={queryClient}>
         <SuiClientProvider networks={networks} defaultNetwork="devnet">
           <WalletProvider autoConnect={true}>
