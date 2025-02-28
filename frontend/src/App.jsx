@@ -16,10 +16,12 @@ const networks = {
   mainnet: { url: getFullnodeUrl("mainnet") },
 };
 
+let zoo = "Hello SUI"
+
 function App() {
   return (
     <BrowserRouter>
-      <div>SUI</div>
+      <div>{zoo}</div>
       <QueryClientProvider client={queryClient}>
         <SuiClientProvider networks={networks} defaultNetwork="testnet">
           <WalletProvider autoConnect={true}>
