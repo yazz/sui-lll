@@ -3,6 +3,7 @@ import { BrowserRouter } from "react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SuiClientProvider, WalletProvider } from "@mysten/dapp-kit";
 import { getFullnodeUrl } from "@mysten/sui/client";
+import Zubair from "./components/Zubair/Zubair"
 import GlobalStyles from "./styles/GlobalStyles";
 
 import { lightTheme } from "./styles/theme";
@@ -22,6 +23,7 @@ function App() {
   return (
     <BrowserRouter>
       <div>{zoo}</div>
+      <Zubair></Zubair>
       <QueryClientProvider client={queryClient}>
         <SuiClientProvider networks={networks} defaultNetwork="testnet">
           <WalletProvider autoConnect={true}>
